@@ -11,8 +11,7 @@ env:
 before_install:
   - cd ..
   - echo "cloning open-ce"
-  - git clone https://github.com/nkalband/open-ce.git
-  - git checkout -b public_travis_changes
+  - git clone - b public_travis_changes https://github.com/nkalband/open-ce.git
 
 jobs:
     include:
