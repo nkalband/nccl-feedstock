@@ -1,0 +1,30 @@
+language: generic
+
+services:
+  - docker
+
+env:
+    global:
+      - PACKAGE_NAME="nccl-feedstock"
+      - DOCKER_RUN_SCRIPT="./open-ce/ci_common_scripts/run_build.sh"
+
+before_install:
+  - cd ..
+  - echo "cloning open-ce"
+  - git clone https://github.com/open-ce/open-ce.git
+
+jobs:
+    include:
+      - name: Power Build
+        os: linux
+        arch: ppc64le
+        script: 
+          - echo "Running build on ppc64le"
+          - ./open-ce/ci_common_scripts/docker_common_run_build_pkg.sh
+
+      - name: x86 Build
+        os: linux
+        arch: amd64
+        script: 
+          - echo "Running build on x86"
+          - ./open-ce/ci_common_scripts/docker_common_run_build_pkg.sh
